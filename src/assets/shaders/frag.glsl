@@ -1,12 +1,13 @@
 varying vec3 vUv;
 uniform float u_time;
-uniform float ex;
+uniform vec2 u_resolution;
 
 void main() {
   vec2 center = vec2(0.0, 0.0);
-  // vUv is already view space (fullscreen is [-1, 1])
+  // clip space
+  vec2 space = vUv.xy / u_resolution.xy * 2.0;// - 1.0;
   // adjust for aspect ratio ([-1, 1] but with "black bars")
-  vec2 space = vec2(vUv.x * 16. / 9., vUv.y);
+  space.x *= u_resolution.x / u_resolution.y;
   vec3 color = vec3(0.0);
   // vec3 color = vec3(u_time / 10.);
 
