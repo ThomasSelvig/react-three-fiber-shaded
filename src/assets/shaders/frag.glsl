@@ -7,8 +7,10 @@ void main() {
   // vUv is already view space (fullscreen is [-1, 1])
   // adjust for aspect ratio ([-1, 1] but with "black bars")
   vec2 space = vec2(vUv.x * 16. / 9., vUv.y);
-  vec3 color = vec3(u_time / 10.);
+  vec3 color = vec3(0.0);
+  // vec3 color = vec3(u_time / 10.);
 
+  color.r = 0.5 + 0.5 * sin(u_time + space.x * 10.0);
   // circle
   if (distance(space, center) < 0.5) {
     color = vec3(1.0);
